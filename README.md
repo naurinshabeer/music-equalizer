@@ -3,6 +3,8 @@
 A simple music player built in Flutter with **Low / Mid / High** equalizer controls that change the sound in real time.
 
 - **Platform targeted:** Android (developed and tested on a OnePlus phone, model CPH2487)
+- **Demo video:** `<ADD VIDEO LINK>`
+- **Author:** `<ADD YOUR NAME>`
 
 ## Features
 
@@ -83,10 +85,27 @@ flutter install
 
 The three demo tracks are bundled in `assets/audio/` (`track1.mp3`, `track2.mp3`, `track3.mp3`).
 
+## Challenges faced
+
+- **File picker versions.** The first picker package (`file_picker`) caused build failures: an old version used an Android API that Flutter has since removed, and a newer one needed a higher Android SDK version. I replaced it with `file_selector`, and kept all picker code in a single file (`device_picker.dart`) so it is easy to swap.
+- **Bundled audio would not load on my phone.** `just_audio` plays bundled assets through a local proxy, which gave a generic "(0) Source error" on this device. The fix was to copy each bundled asset to the app's cache folder at startup and play it as a normal file. The loader also reports exactly which step failed, which made debugging much faster.
+- **Equalizer bands differ per device.** Instead of hard-coding three frequencies, the app reads the device's bands and groups them, and takes the dB limits from the hardware.
+- **No real audio analysis.** `just_audio` cannot read live audio levels, so I did not build a spectrum visualizer. The only graphic on the EQ screen is the response curve, which reflects the actual slider values.
+- **Flutter layout quirks.** For example, a selected list tile's highlight painted outside the scrolling list until I gave the list its own clipped `Material`.
+
+## Music credits
+
+All tracks are from [Pixabay Music](https://pixabay.com/music/):
+
+- "Electronic Stylish Rock" by AlexGrohl
+- "Acoustic Guitar" by AtlasAudio
+- "Woah (CJC Beat Factory Remix)" by AAP
+
+Please check each track's own page for its license terms. `<ADD LICENSE NOTE / TRACK URLS>`
 
 ## Use of AI tools
 
-- **Claude (Anthropic)** was used for planning the scope, choosing the approach for the equalizer, generating and refactoring the Flutter code, debugging build and asset errors, and drafting this README.
+- **Claude (Anthropic)** was used for planning the scope, choosing the approach for the equalizer, generating and refactoring the Flutter code, debugging build and asset errors, and drafting this README and the demo script.
 - **Google Stitch** was used to generate the visual design direction (colour palette and layout ideas). The app's theme follows its palette.
 
 I ran, tested and verified everything on my own device, and made the final decisions about the design and scope.
