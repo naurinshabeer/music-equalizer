@@ -3,8 +3,12 @@
 A simple music player built in Flutter with **Low / Mid / High** equalizer controls that change the sound in real time.
 
 - **Platform targeted:** Android (developed and tested on a OnePlus phone, model CPH2487)
-- **Demo video:** `<ADD VIDEO LINK>`
-- **Author:** `<ADD YOUR NAME>`
+
+## Approach used
+
+1. **Brainstormed the features and screens.** I started by working out what the challenge was really asking for (a music player whose Low / Mid / High sliders audibly change the sound live), then planned the features and screens around that: an Albums screen (bundled tracks and songs picked from the device), a Now Playing screen, and an Equalizer screen as the main feature, with presets, a bypass switch and a reset to flat.
+2. **Designed the UI using Google Stitch.** I used Google Stitch to generate the visual direction (colour palette and screen layouts), and the app's theme follows it.
+3. **Built it using Claude.** I built the Flutter app with Claude, working feature by feature: playback and the equalizer first, then the screens, then albums and device files, testing each step on my phone.
 
 ## Features
 
@@ -92,16 +96,6 @@ The three demo tracks are bundled in `assets/audio/` (`track1.mp3`, `track2.mp3`
 - **Equalizer bands differ per device.** Instead of hard-coding three frequencies, the app reads the device's bands and groups them, and takes the dB limits from the hardware.
 - **No real audio analysis.** `just_audio` cannot read live audio levels, so I did not build a spectrum visualizer. The only graphic on the EQ screen is the response curve, which reflects the actual slider values.
 - **Flutter layout quirks.** For example, a selected list tile's highlight painted outside the scrolling list until I gave the list its own clipped `Material`.
-
-## Music credits
-
-All tracks are from [Pixabay Music](https://pixabay.com/music/):
-
-- "Electronic Stylish Rock" by AlexGrohl
-- "Acoustic Guitar" by AtlasAudio
-- "Woah (CJC Beat Factory Remix)" by AAP
-
-Please check each track's own page for its license terms. `<ADD LICENSE NOTE / TRACK URLS>`
 
 ## Use of AI tools
 
